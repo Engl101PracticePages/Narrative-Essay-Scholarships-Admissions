@@ -1,0 +1,1328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Narrative Essay: Exploring Academic Opportunities</title>
+  <style>
+    :root {
+      --cream: #eef5ef;
+      --paper: #ffffff;
+      --paper-2: #f6faf7;
+      --ink: #102820;
+      --muted: #51645e;
+      --green: #003c3c;
+      --green-2: #00543d;
+      --green-3: #0f6b4f;
+      --green-soft: rgba(0, 84, 61, 0.10);
+      --accent: #f4c542;
+      --line: rgba(16, 40, 32, 0.16);
+      --shadow: 0 22px 60px rgba(0, 60, 60, 0.13);
+      --radius: 28px;
+      --field: #fbfefc;
+
+      --bg: var(--cream);
+      --bg2: var(--paper-2);
+      --card: var(--paper);
+      --text: var(--ink);
+      --soft: var(--green-soft);
+      --accent2: var(--green-3);
+      --warn: #8b3a2b;
+      --warnbg: #fff1ee;
+      --success: var(--green-3);
+      --focus: 0 0 0 3px rgba(244, 197, 66, 0.42);
+      --link: var(--green-2);
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+
+    body{
+      margin:0;
+      font-family:Arial, Helvetica, sans-serif;
+      font-size:18px;
+      line-height:1.6;
+      color:var(--text);
+      background:linear-gradient(180deg,var(--cream) 0%, var(--paper-2) 58%, #ffffff 100%);
+    }
+
+
+    a{
+      color:var(--link);
+    }
+
+    .wrap{
+      max-width:1100px;
+      margin:0 auto;
+      padding:28px 18px 56px;
+    }
+
+    .topbar{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:14px;
+      flex-wrap:wrap;
+      margin-bottom:18px;
+    }
+
+    .chip{
+      display:inline-block;
+      background:var(--card);
+      border:1px solid var(--line);
+      color:var(--muted);
+      border-radius:999px;
+      padding:8px 12px;
+      font-size:14px;
+      box-shadow:var(--shadow);
+    }
+
+    .toggle-btn,
+    .btn,
+    .small-btn{
+      border:none;
+      border-radius:14px;
+      cursor:pointer;
+      font-family:inherit;
+      transition:transform .15s ease, box-shadow .15s ease, background .15s ease, opacity .15s ease;
+    }
+
+    .toggle-btn:hover,
+    .btn:hover,
+    .small-btn:hover{
+      transform:translateY(-1px);
+    }
+
+    .toggle-btn:focus-visible,
+    .btn:focus-visible,
+    .small-btn:focus-visible,
+    input:focus,
+    textarea:focus,
+    select:focus,
+    summary:focus{
+      outline:none;
+      box-shadow:var(--focus);
+    }
+
+    .toggle-btn{
+      background:var(--card);
+      color:var(--text);
+      border:1px solid var(--line);
+      padding:12px 16px;
+      font-size:15px;
+      box-shadow:var(--shadow);
+    }
+
+    .hero,
+    .card{
+      background:var(--card);
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+    }
+
+    .hero{
+      padding:34px 28px;
+      margin-bottom:22px;
+    }
+
+    .hero .eyebrow{
+      margin:0 0 8px 0;
+      color:var(--green-2);
+      font-size:14px;
+      letter-spacing:.02em;
+    }
+
+    h1{
+      margin:0 0 14px 0;
+      font-size:clamp(2rem, 3vw, 2.8rem);
+      line-height:1.15;
+    }
+
+    .lead{
+      margin:0;
+      max-width:900px;
+    }
+
+    .grid{
+      display:grid;
+      gap:22px;
+    }
+
+    .card{
+      padding:26px 22px;
+    }
+
+    .card h2{
+      margin:0 0 10px 0;
+      font-size:1.5rem;
+      line-height:1.2;
+    }
+
+    .sub{
+      margin:0 0 14px 0;
+      color:var(--muted);
+    }
+
+    .note,
+    .warning,
+    .top-warning{
+      border-radius:14px;
+      padding:16px;
+      margin-top:14px;
+    }
+
+    .top-warning{
+      border-left:4px solid var(--green-2);
+      background:var(--soft);
+      margin-top:18px;
+    }
+
+    .choice-grid{
+      display:grid;
+      grid-template-columns:repeat(3,minmax(0,1fr));
+      gap:14px;
+      margin-top:16px;
+    }
+
+    .choice-card{
+      position:relative;
+      background:var(--soft);
+      border:2px solid var(--line);
+      border-radius:20px;
+      padding:18px;
+      min-height:134px;
+      cursor:pointer;
+    }
+
+    .choice-card input{
+      position:absolute;
+      opacity:0;
+      pointer-events:none;
+    }
+
+    .choice-card strong{
+      display:block;
+      margin-bottom:8px;
+      font-size:1.02rem;
+    }
+
+    .choice-card span{
+      display:block;
+      color:var(--muted);
+      font-size:16px;
+    }
+
+    .choice-card.selected{
+      border-color:var(--green-2);
+      background:linear-gradient(180deg, rgba(199,141,76,0.12), rgba(199,141,76,0.03));
+    }
+
+    .help-grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:14px;
+    }
+
+    details{
+      background:var(--soft);
+      border:1px solid var(--line);
+      border-radius:18px;
+      overflow:hidden;
+    }
+
+    summary{
+      cursor:pointer;
+      list-style:none;
+      padding:16px 18px;
+      font-weight:700;
+    }
+
+    summary::-webkit-details-marker{
+      display:none;
+    }
+
+    .details-inner{
+      padding:0 18px 18px 18px;
+    }
+
+    .search-box{
+      background:var(--card);
+      border:1px dashed var(--line);
+      border-radius:14px;
+      padding:12px 14px;
+      font-size:16px;
+      word-break:break-word;
+      margin-top:8px;
+    }
+
+    .copy-row{
+      display:flex;
+      gap:10px;
+      align-items:center;
+      flex-wrap:wrap;
+      margin-top:10px;
+    }
+
+    .small-btn{
+      padding:10px 14px;
+      background:var(--green);
+      color:#fff;
+      font-size:14px;
+      text-decoration:none;
+      display:inline-block;
+    }
+
+    .small-btn:visited{
+      color:#fff;
+    }
+
+
+    .field-grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:18px;
+    }
+
+    .field{
+      margin-bottom:16px;
+    }
+
+    .field.full{
+      grid-column:1 / -1;
+    }
+
+    label{
+      display:block;
+      font-weight:700;
+      margin-bottom:8px;
+      font-size:16px;
+    }
+
+    .hint{
+      display:block;
+      margin-top:4px;
+      color:var(--muted);
+      font-weight:400;
+      font-size:14px;
+    }
+
+    input[type="text"],
+    input[type="url"],
+    input[type="date"],
+    textarea,
+    select{
+      width:100%;
+      border:1px solid var(--line);
+      border-radius:16px;
+      padding:14px;
+      font-size:17px;
+      font-family:inherit;
+      background:#fff;
+      color:#111827;
+    }
+
+
+    textarea{
+      min-height:120px;
+      resize:vertical;
+    }
+
+    .eligibility-grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:14px;
+    }
+
+    .radio-row{
+      display:flex;
+      flex-wrap:wrap;
+      gap:12px;
+      margin-top:8px;
+    }
+
+    .radio-pill{
+      display:flex;
+      align-items:center;
+      gap:8px;
+      border:1px solid var(--line);
+      border-radius:999px;
+      padding:12px 16px;
+      background:var(--soft);
+      cursor:pointer;
+    }
+
+    .note{
+      border-left:4px solid var(--green-2);
+      background:var(--soft);
+    }
+
+    .warning{
+      border-left:4px solid var(--warn);
+      background:var(--warnbg);
+      color:var(--warn);
+      font-weight:700;
+    }
+
+    .hidden{
+      display:none !important;
+    }
+
+    .meter{
+      display:grid;
+      grid-template-columns:repeat(6,1fr);
+      gap:10px;
+      margin-top:16px;
+    }
+
+    .step{
+      border:1px solid var(--line);
+      background:var(--soft);
+      color:var(--muted);
+      border-radius:999px;
+      text-align:center;
+      padding:10px 12px;
+      font-size:14px;
+    }
+
+    .step.done{
+      color:var(--success);
+      border-color:rgba(47,111,79,0.35);
+      font-weight:700;
+    }
+
+    .status{
+      margin-top:14px;
+      color:var(--muted);
+      font-size:15px;
+    }
+
+    .word-count{
+      margin-top:8px;
+      color:var(--muted);
+      font-size:14px;
+    }
+
+    .submit-tools{
+      display:flex;
+      flex-wrap:wrap;
+      gap:12px;
+      margin-top:16px;
+    }
+
+    .btn{
+      padding:14px 18px;
+      font-size:16px;
+      background:var(--green);
+      color:#fff;
+    }
+
+    .btn.secondary{
+      background:var(--paper);
+      color:var(--green);
+      border:2px solid var(--green);
+    }
+
+    .btn.hub-link,
+    .small-btn.hub-link{
+      background:var(--green-2);
+      color:#fff;
+    }
+
+    .btn:visited,
+    .small-btn:visited{
+      color:#fff;
+    }
+
+    .preview-shell{
+      margin-top:18px;
+      border:1px dashed var(--line);
+      border-radius:20px;
+      background:var(--soft);
+      padding:16px;
+    }
+
+    .preview-sheet{
+      background:#fff;
+      color:#111827;
+      border:1px solid #d1d5db;
+      border-radius:14px;
+      padding:26px;
+    }
+
+    .preview-sheet h3{
+      margin:0 0 6px 0;
+      font-size:1.45rem;
+    }
+
+    .preview-meta{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:14px;
+      margin:16px 0 24px 0;
+    }
+
+    .preview-block{
+      margin-bottom:18px;
+    }
+
+    .preview-block h4{
+      margin:0 0 8px 0;
+      font-size:1rem;
+      border-bottom:1px solid #d1d5db;
+      padding-bottom:6px;
+    }
+
+    .preview-value{
+      white-space:pre-wrap;
+      word-break:break-word;
+    }
+
+    .footer-note{
+      color:var(--muted);
+      font-size:14px;
+      margin-top:14px;
+    }
+
+    .example-link-list{
+      margin:10px 0 0 0;
+      padding-left:18px;
+    }
+
+    .example-link-list li{
+      margin-bottom:10px;
+    }
+
+
+
+    .finish-actions{
+      display:flex;
+      flex-wrap:wrap;
+      gap:12px;
+      margin-top:18px;
+    }
+
+    .print-only{
+      display:none;
+    }
+
+    .modal-backdrop{
+      position:fixed;
+      inset:0;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:24px;
+      background:rgba(16,40,32,0.64);
+      z-index:999;
+    }
+
+    .modal-backdrop.hidden{
+      display:none !important;
+    }
+
+    .modal-card{
+      width:min(760px, 100%);
+      min-height:min(520px, calc(100vh - 48px));
+      background:var(--paper);
+      color:var(--ink);
+      border-radius:var(--radius);
+      border:1px solid var(--line);
+      box-shadow:0 28px 90px rgba(0, 0, 0, 0.32);
+      padding:clamp(24px, 5vw, 48px);
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      gap:18px;
+    }
+
+    .modal-card h2{
+      margin:0;
+      font-size:clamp(2rem, 4vw, 3rem);
+      line-height:1.08;
+    }
+
+    .modal-card p{
+      margin:0;
+      font-size:1.08rem;
+    }
+
+    .modal-actions{
+      display:flex;
+      flex-wrap:wrap;
+      gap:12px;
+      margin-top:8px;
+    }
+
+    .modal-reminder{
+      border-left:4px solid var(--green-2);
+      background:var(--green-soft);
+      border-radius:16px;
+      padding:16px;
+      font-size:1rem;
+    }
+
+    @media (max-width:900px){
+      .choice-grid,
+      .help-grid,
+      .field-grid,
+      .eligibility-grid,
+      .preview-meta{
+        grid-template-columns:1fr;
+      }
+
+      .meter{
+        grid-template-columns:repeat(2,1fr);
+      }
+    }
+
+    @media print{
+      body *{
+        visibility:hidden !important;
+      }
+
+      #printArea,
+      #printArea *{
+        visibility:visible !important;
+      }
+
+      #printArea{
+        display:block !important;
+        position:absolute;
+        left:0;
+        top:0;
+        width:100%;
+        margin:0;
+        padding:0;
+        background:#fff;
+      }
+
+      #printArea .preview-shell{
+        border:none;
+        background:#fff;
+        padding:0;
+        margin:0;
+      }
+
+      #printArea .preview-sheet{
+        border:none;
+        border-radius:0;
+        box-shadow:none;
+        padding:24px;
+      }
+
+      a[href]:after{
+        content:"";
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="topbar">
+      <span class="chip">English 101/117 Toolkit Work Hub</span>
+      <a class="small-btn hub-link" href="https://engl101practicepages.github.io/AssignmentWorkHub/">Return to Toolkit Work Hub</a>
+    </div>
+
+    <section class="hero">
+      <p class="eyebrow">English 101/117 Toolkit Work Hub</p>
+      <h1>Narrative Essay: Exploring Academic Opportunities</h1>
+      <p class="sub" style="margin-bottom:12px;">Open toolkit workpages here. Save unfinished work in your own Google Doc.</p>
+      <p class="lead">
+        Research an academic opportunity that connects to your goals, such as a transfer program,
+        summer program, or scholarship. Then identify that opportunity’s own essay prompt or written
+        response questions and explain how participating in it would support your academic or professional future.
+      </p>
+
+      <div class="top-warning">
+        <strong>Important</strong><br>
+        Keep this toolkit workpage open while you work. Open your scholarship or program research in separate tabs.
+        Google Docs is for unfinished work you need to return to later. Finished work should be saved as a PDF and submitted in Canvas.
+      </div>
+    </section>
+
+    <div class="grid">
+      <section class="card">
+        <h2>1. Choose an opportunity type</h2>
+        <p class="sub">Choose something you are generally eligible for based on your major, academic goals, transfer plans, background, or student status.</p>
+
+        <div class="note" style="margin-top:0; margin-bottom:14px;">
+          You should choose an opportunity that is a real fit for you. Do not choose something that clearly does not match your situation. For summer programs, it is okay if the specific program is not open right now as long as it is something you would realistically be able to apply to next year.
+        </div>
+
+        <div class="choice-grid" id="opportunityChoices">
+          <label class="choice-card">
+            <input type="radio" name="opportunityType" value="Transfer Program">
+            <strong>Transfer program</strong>
+            <span>Research a university or transfer pathway connected to your bachelor’s degree goals.</span>
+          </label>
+
+          <label class="choice-card">
+            <input type="radio" name="opportunityType" value="Summer Program">
+            <strong>Summer program</strong>
+            <span>Find an academic, research, or professional development program related to your field.</span>
+          </label>
+
+          <label class="choice-card">
+            <input type="radio" name="opportunityType" value="Scholarship">
+            <strong>Scholarship</strong>
+            <span>Find a scholarship you may qualify for based on major, background, or academic goals.</span>
+          </label>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>2. Search help</h2>
+        <p class="sub">Use these only if you need help getting started. You still need to do the research yourself.</p>
+
+        <div class="help-grid">
+          <details>
+            <summary>Search on a college website</summary>
+            <div class="details-inner">
+              <p>Try searching directly on official college or university websites.</p>
+              <div class="search-box" id="search1">site:.edu [college name] scholarships</div>
+              <div class="copy-row">
+                <button class="small-btn copy-btn" type="button" data-copy-text='site:.edu [college name] scholarships'>Copy search</button>
+              </div>
+              <p>Example: <em>site:.edu Portland State University scholarships</em></p>
+            </div>
+          </details>
+
+          <details>
+            <summary>Search for a summer program</summary>
+            <div class="details-inner">
+              <p>Look on official college sites for summer bridge, research, or academic programs.</p>
+              <div class="search-box" id="search2">site:.edu [college name] summer program</div>
+              <div class="copy-row">
+                <button class="small-btn copy-btn" type="button" data-copy-text='site:.edu [college name] summer program'>Copy search</button>
+              </div>
+              <p>Example: <em>site:.edu UC Davis summer program</em></p>
+            </div>
+          </details>
+
+          <details>
+            <summary>Scholarship sites to start with</summary>
+            <div class="details-inner">
+              <p>These are common places to start searching. Open them in a new tab, then verify details on the scholarship’s real page.</p>
+
+              <div class="copy-row">
+                <a class="small-btn" href="https://bigfuture.collegeboard.org/scholarship-search" target="_blank" rel="noopener noreferrer">BigFuture</a>
+                <a class="small-btn" href="https://www.scholarships.com/" target="_blank" rel="noopener noreferrer">Scholarships.com</a>
+                <a class="small-btn" href="https://www.fastweb.com/" target="_blank" rel="noopener noreferrer">Fastweb</a>
+              </div>
+
+              <p style="margin-top:12px;">These are starting points. Make sure you still click through and read the actual scholarship or program requirements carefully.</p>
+            </div>
+          </details>
+
+          <details>
+            <summary>Examples</summary>
+            <div class="details-inner">
+              <p>Example summer program:</p>
+              <ul class="example-link-list">
+                <li>
+                  <a href="https://www.gs.washington.edu/academics/summer/gssummer/index.htm#one" target="_blank" rel="noopener noreferrer">
+                    UW GenOM Project
+                  </a>
+                </li>
+              </ul>
+              <p>
+                Even if this exact summer program is not accepting applications this year, you may still choose a summer opportunity
+                you would realistically be able to apply to next year.
+              </p>
+            </div>
+          </details>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>3. Basic opportunity information</h2>
+        <p class="sub">Fill in what you learn from your research.</p>
+
+        <div class="field-grid">
+          <div class="field">
+            <label for="studentName">Name</label>
+            <input type="text" id="studentName" />
+          </div>
+
+          <div class="field">
+            <label for="className">Class</label>
+            <input type="text" id="className" placeholder="Example: ENGL 101" />
+          </div>
+
+          <div class="field">
+            <label for="dateField">Date</label>
+            <input type="date" id="dateField" />
+          </div>
+
+          <div class="field">
+            <label for="programName">Name of program or scholarship</label>
+            <input type="text" id="programName" />
+          </div>
+
+          <div class="field full">
+            <label for="institutionName">Institution or organization offering it</label>
+            <input type="text" id="institutionName" />
+          </div>
+
+          <div class="field full">
+            <label for="purposeBenefits">Purpose and benefits</label>
+            <textarea id="purposeBenefits" placeholder="What is this opportunity for, and what does it offer students?"></textarea>
+          </div>
+
+          <div class="field full">
+            <label>Eligibility requirements <span class="hint">List the actual requirements and think honestly about whether this opportunity is a real fit for you.</span></label>
+            <div class="eligibility-grid">
+              <input type="text" id="elig1" placeholder="Eligibility requirement 1">
+              <input type="text" id="elig2" placeholder="Eligibility requirement 2">
+              <input type="text" id="elig3" placeholder="Eligibility requirement 3">
+              <input type="text" id="elig4" placeholder="Eligibility requirement 4">
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="deadline">Application deadline</label>
+            <input type="text" id="deadline" placeholder="Example: May 15, 2026" />
+          </div>
+
+          <div class="field">
+            <label for="sourceLink">Source link <span class="hint">Use the real program, scholarship, or institution page when possible.</span></label>
+            <input type="url" id="sourceLink" placeholder="https://..." />
+          </div>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>4. What does “prompt” mean here?</h2>
+        <p class="sub">This is one of the most important parts of the assignment.</p>
+
+        <div class="note">
+          <p><strong>A prompt</strong> is the writing question or task that the scholarship, transfer program, or summer program asks applicants to respond to.</p>
+          <p>For this assignment, you are <strong>not</strong> listing my class directions as the prompt.</p>
+          <p>You are looking for the opportunity’s own essay question or written response questions, such as:</p>
+          <ul>
+            <li>Describe a challenge you have overcome.</li>
+            <li>Explain why you are a strong candidate for this opportunity.</li>
+            <li>Discuss your academic goals and how this program will support them.</li>
+          </ul>
+          <p><strong>If the opportunity does not require applicants to write an essay or answer written response questions, you cannot use it for this assignment.</strong></p>
+        </div>
+
+        <div class="field" style="margin-top:18px;">
+          <label>Does this opportunity require applicants to do writing?</label>
+          <div class="radio-row">
+            <label class="radio-pill">
+              <input type="radio" name="requiresWriting" value="Yes">
+              <span>Yes, it includes an essay prompt or written response questions</span>
+            </label>
+
+            <label class="radio-pill">
+              <input type="radio" name="requiresWriting" value="No">
+              <span>No, it does not require any writing</span>
+            </label>
+          </div>
+          <div id="writingWarning" class="warning hidden">
+            This opportunity will not work for this assignment. You need to choose a scholarship, transfer application, or program that includes an essay prompt or separate written response questions.
+          </div>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>5. The opportunity’s essay prompt and writing requirements</h2>
+        <p class="sub">Now identify the writing task the opportunity itself asks applicants to complete.</p>
+
+        <div class="field">
+          <label>What kind of writing does this opportunity ask for?</label>
+          <div class="radio-row">
+            <label class="radio-pill">
+              <input type="radio" name="promptType" value="One longer essay prompt">
+              <span>One longer essay prompt</span>
+            </label>
+
+            <label class="radio-pill">
+              <input type="radio" name="promptType" value="Several shorter prompt questions">
+              <span>Several shorter prompt questions</span>
+            </label>
+          </div>
+        </div>
+
+        <div id="multiPromptNote" class="note hidden">
+          Many real applications use several connected questions instead of one traditional essay prompt. That is okay. For this class, you can still use that opportunity. Just list the separate questions below and think about how they could work together as one larger narrative essay.
+        </div>
+
+        <div class="field-grid" style="margin-top:16px;">
+          <div class="field full" id="singlePromptField">
+            <label for="essayPrompt">Copy the opportunity’s essay prompt here</label>
+            <textarea id="essayPrompt" placeholder="Paste the actual essay prompt from the scholarship, transfer program, or summer program here."></textarea>
+          </div>
+
+          <div class="field full hidden" id="multiPromptField">
+            <label for="promptQuestions">List the separate prompt questions here</label>
+            <textarea id="promptQuestions" placeholder="List each separate question the opportunity asks applicants to answer."></textarea>
+          </div>
+
+          <div class="field">
+            <label for="wordCount">Word count or page length requirements</label>
+            <input type="text" id="wordCount" placeholder="Example: 500 words or 1 to 2 pages" />
+          </div>
+
+          <div class="field">
+            <label for="formatReq">Formatting requirements</label>
+            <input type="text" id="formatReq" placeholder="Example: double-spaced, 12 pt font, PDF upload, none listed" />
+          </div>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>6. Connection to your goals</h2>
+        <p class="sub">Explain how this opportunity fits your academic or professional future.</p>
+
+        <div class="field">
+          <label for="goalConnection">How does this opportunity benefit you academically or professionally?</label>
+          <textarea id="goalConnection" placeholder="Be specific. How does this opportunity connect to your major, goals, transfer plans, future career, skills, or growth?"></textarea>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>7. Short reflection</h2>
+        <p class="sub">Write about how you found the opportunity and why you chose it.</p>
+
+        <div class="field">
+          <label for="reflection">Short reflection</label>
+          <textarea id="reflection" placeholder="About 100 words. Explain how you found this opportunity and why you chose it."></textarea>
+          <div class="word-count" id="reflectionCount">Word count: 0</div>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>8. Finish or pause</h2>
+        <p class="sub">Finished work should be saved as a PDF and submitted in Canvas. Unfinished work can be copied into your Google Doc Save Space so you can return to it later.</p>
+
+        <div class="meter" id="progressMeter">
+          <div class="step" data-step="type">Opportunity</div>
+          <div class="step" data-step="info">Info</div>
+          <div class="step" data-step="writing">Writing</div>
+          <div class="step" data-step="prompt">Prompt</div>
+          <div class="step" data-step="goals">Goals</div>
+          <div class="step" data-step="reflection">Reflection</div>
+        </div>
+
+        <div class="status" id="statusText">Fill in the worksheet. Your submission sheet below updates automatically.</div>
+
+        <div class="submit-tools">
+          <button class="btn" type="button" id="printBtn">Save Finished Work as PDF</button>
+          <button class="btn secondary" type="button" id="saveUnfinishedBtn">Save Unfinished Work for Later</button>
+          <button class="btn secondary" type="button" id="restoreBtn">Restore Saved Work</button>
+        </div>
+
+        <div id="printArea" class="preview-shell print-only" aria-hidden="true">
+          <div class="preview-sheet">
+            <h3>Narrative Essay: Exploring Academic Opportunities</h3>
+            <p style="margin-top:0;">Student submission sheet</p>
+
+            <div class="preview-meta">
+              <div><strong>Name:</strong><br><span id="p_studentName">—</span></div>
+              <div><strong>Date:</strong><br><span id="p_dateField">—</span></div>
+              <div><strong>Class:</strong><br><span id="p_className">—</span></div>
+            </div>
+
+            <div class="preview-block">
+              <h4>Opportunity type</h4>
+              <div class="preview-value" id="p_opportunityType">—</div>
+            </div>
+
+            <div class="preview-block">
+              <h4>Program or scholarship information</h4>
+              <div class="preview-value" id="p_programInfo">—</div>
+            </div>
+
+            <div class="preview-block">
+              <h4>Eligibility requirements</h4>
+              <div class="preview-value" id="p_eligibility">—</div>
+            </div>
+
+            <div class="preview-block">
+              <h4>Does the opportunity require writing?</h4>
+              <div class="preview-value" id="p_requiresWriting">—</div>
+            </div>
+
+            <div class="preview-block">
+              <h4>Essay prompt or written response questions</h4>
+              <div class="preview-value" id="p_promptSection">—</div>
+            </div>
+
+            <div class="preview-block">
+              <h4>Connection to goals</h4>
+              <div class="preview-value" id="p_goalConnection">—</div>
+            </div>
+
+            <div class="preview-block">
+              <h4>Source link</h4>
+              <div class="preview-value" id="p_sourceLink">—</div>
+            </div>
+
+            <div class="preview-block">
+              <h4>Short reflection</h4>
+              <div class="preview-value" id="p_reflection">—</div>
+            </div>
+          </div>
+        </div>
+
+        <p class="footer-note">
+          Tip: after clicking Save Finished Work as PDF, choose “Save as PDF” in your browser’s print window and upload that PDF to Canvas.
+        </p>
+      </section>
+    </div>
+  </div>
+
+
+  <div id="saveModal" class="modal-backdrop hidden" aria-hidden="true">
+    <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="saveModalTitle" aria-describedby="saveModalDesc" tabindex="-1">
+      <h2 id="saveModalTitle">Now save it in your Google Doc.</h2>
+      <p id="saveModalDesc">Your unfinished work has been copied. Open the Toolkit Work Hub, then open your Google Doc Save Space and paste it there.</p>
+      <div class="modal-actions">
+        <a class="btn hub-link" href="https://engl101practicepages.github.io/AssignmentWorkHub/">Go to Toolkit Work Hub</a>
+        <button class="btn secondary" type="button" id="stayOnPageBtn">Stay on this page</button>
+      </div>
+      <div class="modal-reminder"><strong>Reminder:</strong> Google Docs is for unfinished work you need to return to later. Finished work should be saved as a PDF and submitted in Canvas.</div>
+    </div>
+  </div>
+
+  <script>
+    const allInputs = Array.from(document.querySelectorAll('input, textarea, select'));
+    const reflection = document.getElementById('reflection');
+    const reflectionCount = document.getElementById('reflectionCount');
+    const statusText = document.getElementById('statusText');
+    const writingWarning = document.getElementById('writingWarning');
+    const multiPromptNote = document.getElementById('multiPromptNote');
+    const singlePromptField = document.getElementById('singlePromptField');
+    const multiPromptField = document.getElementById('multiPromptField');
+    const progressSteps = {
+      type: document.querySelector('[data-step="type"]'),
+      info: document.querySelector('[data-step="info"]'),
+      writing: document.querySelector('[data-step="writing"]'),
+      prompt: document.querySelector('[data-step="prompt"]'),
+      goals: document.querySelector('[data-step="goals"]'),
+      reflection: document.querySelector('[data-step="reflection"]')
+    };
+
+    function wordCount(text){
+      return text.trim() ? text.trim().split(/\s+/).length : 0;
+    }
+
+    function getRadioValue(name){
+      const checked = document.querySelector(`input[name="${name}"]:checked`);
+      return checked ? checked.value : '';
+    }
+
+    function setChoiceCardStates(){
+      document.querySelectorAll('.choice-card').forEach(card => {
+        const input = card.querySelector('input[type="radio"]');
+        card.classList.toggle('selected', input.checked);
+      });
+    }
+
+    function formatDate(value){
+      if(!value) return '—';
+      const d = new Date(value + 'T00:00:00');
+      return d.toLocaleDateString(undefined, {year:'numeric', month:'long', day:'numeric'});
+    }
+
+    function valueOrDash(value){
+      return value && value.trim() ? value.trim() : '—';
+    }
+
+    function updatePromptMode(){
+      const promptType = getRadioValue('promptType');
+      if(promptType === 'Several shorter prompt questions'){
+        multiPromptNote.classList.remove('hidden');
+        multiPromptField.classList.remove('hidden');
+        singlePromptField.classList.add('hidden');
+      } else {
+        multiPromptNote.classList.add('hidden');
+        multiPromptField.classList.add('hidden');
+        singlePromptField.classList.remove('hidden');
+      }
+    }
+
+    function updateWritingWarning(){
+      const requiresWriting = getRadioValue('requiresWriting');
+      if(requiresWriting === 'No'){
+        writingWarning.classList.remove('hidden');
+      } else {
+        writingWarning.classList.add('hidden');
+      }
+    }
+
+    function updateReflectionCount(){
+      const count = wordCount(reflection.value);
+      reflectionCount.textContent = `Word count: ${count}`;
+    }
+
+    function buildProgramInfo(){
+      const parts = [
+        `Name: ${valueOrDash(document.getElementById('programName').value)}`,
+        `Institution/Organization: ${valueOrDash(document.getElementById('institutionName').value)}`,
+        `Purpose and benefits: ${valueOrDash(document.getElementById('purposeBenefits').value)}`,
+        `Application deadline: ${valueOrDash(document.getElementById('deadline').value)}`
+      ];
+      return parts.join('\n\n');
+    }
+
+    function buildEligibility(){
+      const eligs = [
+        document.getElementById('elig1').value.trim(),
+        document.getElementById('elig2').value.trim(),
+        document.getElementById('elig3').value.trim(),
+        document.getElementById('elig4').value.trim()
+      ].filter(Boolean);
+
+      if(!eligs.length) return '—';
+      return eligs.map((item, i) => `${i + 1}. ${item}`).join('\n');
+    }
+
+    function buildPromptSection(){
+      const promptType = getRadioValue('promptType');
+      const wordCountReq = valueOrDash(document.getElementById('wordCount').value);
+      const formatReq = valueOrDash(document.getElementById('formatReq').value);
+
+      let promptText = '—';
+
+      if(promptType === 'Several shorter prompt questions'){
+        promptText =
+`Prompt type: Several shorter prompt questions
+
+Questions:
+${valueOrDash(document.getElementById('promptQuestions').value)}
+
+Word count or page length:
+${wordCountReq}
+
+Formatting requirements:
+${formatReq}`;
+      } else if(promptType === 'One longer essay prompt'){
+        promptText =
+`Prompt type: One longer essay prompt
+
+Prompt:
+${valueOrDash(document.getElementById('essayPrompt').value)}
+
+Word count or page length:
+${wordCountReq}
+
+Formatting requirements:
+${formatReq}`;
+      }
+
+      return promptText;
+    }
+
+    function updatePreview(){
+      document.getElementById('p_studentName').textContent = valueOrDash(document.getElementById('studentName').value);
+      document.getElementById('p_dateField').textContent = formatDate(document.getElementById('dateField').value);
+      document.getElementById('p_className').textContent = valueOrDash(document.getElementById('className').value);
+      document.getElementById('p_opportunityType').textContent = valueOrDash(getRadioValue('opportunityType'));
+      document.getElementById('p_programInfo').textContent = buildProgramInfo();
+      document.getElementById('p_eligibility').textContent = buildEligibility();
+      document.getElementById('p_requiresWriting').textContent = valueOrDash(getRadioValue('requiresWriting'));
+      document.getElementById('p_promptSection').textContent = buildPromptSection();
+      document.getElementById('p_goalConnection').textContent = valueOrDash(document.getElementById('goalConnection').value);
+      const sourceLink = document.getElementById('sourceLink').value.trim();
+      document.getElementById('p_sourceLink').textContent = sourceLink || '—';
+      document.getElementById('p_reflection').textContent = valueOrDash(document.getElementById('reflection').value);
+    }
+
+    function updateProgress(){
+      const stepTypeDone = !!getRadioValue('opportunityType');
+      const stepInfoDone = !!(
+        document.getElementById('programName').value.trim() &&
+        document.getElementById('institutionName').value.trim() &&
+        document.getElementById('sourceLink').value.trim()
+      );
+      const stepWritingDone = !!getRadioValue('requiresWriting');
+      const promptType = getRadioValue('promptType');
+      const stepPromptDone =
+        (promptType === 'One longer essay prompt' && document.getElementById('essayPrompt').value.trim()) ||
+        (promptType === 'Several shorter prompt questions' && document.getElementById('promptQuestions').value.trim());
+      const stepGoalsDone = !!document.getElementById('goalConnection').value.trim();
+      const stepReflectionDone = wordCount(document.getElementById('reflection').value) >= 50;
+
+      progressSteps.type.classList.toggle('done', stepTypeDone);
+      progressSteps.info.classList.toggle('done', stepInfoDone);
+      progressSteps.writing.classList.toggle('done', stepWritingDone);
+      progressSteps.prompt.classList.toggle('done', !!stepPromptDone);
+      progressSteps.goals.classList.toggle('done', stepGoalsDone);
+      progressSteps.reflection.classList.toggle('done', stepReflectionDone);
+
+      if(getRadioValue('requiresWriting') === 'No'){
+        statusText.textContent = 'This opportunity does not appear to include writing, so it will not work for this assignment.';
+      } else if(stepTypeDone && stepInfoDone && stepWritingDone && stepPromptDone && stepGoalsDone && stepReflectionDone){
+        statusText.textContent = 'Your submission sheet looks ready. Use Save Finished Work as PDF when you are done.';
+      } else {
+        statusText.textContent = 'Keep going. Your submission sheet below updates automatically as you work.';
+      }
+    }
+
+    function saveToLocal(){
+      const data = {};
+      allInputs.forEach(el => {
+        if(el.type === 'radio'){
+          if(el.checked) data[el.name] = el.value;
+        } else if(el.id) {
+          data[el.id] = el.value;
+        }
+      });
+      localStorage.setItem('academicOpportunityWorksheet', JSON.stringify(data));
+    }
+
+    function loadFromLocal(){
+      const saved = localStorage.getItem('academicOpportunityWorksheet');
+      if(!saved) return;
+      try{
+        const data = JSON.parse(saved);
+        allInputs.forEach(el => {
+          if(el.type === 'radio'){
+            if(data[el.name] && data[el.name] === el.value){
+              el.checked = true;
+            }
+          } else if(el.id && data[el.id] !== undefined){
+            el.value = data[el.id];
+          }
+        });
+      } catch(e){}
+    }
+
+    function refreshAll(){
+      setChoiceCardStates();
+      updatePromptMode();
+      updateWritingWarning();
+      updateReflectionCount();
+      updatePreview();
+      updateProgress();
+      saveToLocal();
+    }
+
+    allInputs.forEach(el => {
+      el.addEventListener('input', refreshAll);
+      el.addEventListener('change', refreshAll);
+    });
+
+    document.querySelectorAll('.copy-btn').forEach(btn => {
+      btn.addEventListener('click', async (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        const text = btn.getAttribute('data-copy-text') || '';
+        try{
+          await navigator.clipboard.writeText(text);
+          const original = btn.textContent;
+          btn.textContent = 'Copied';
+          setTimeout(() => {
+            btn.textContent = original;
+          }, 1200);
+        } catch(err){
+          alert('Copy did not work. You can still highlight the search text and copy it manually.');
+        }
+      });
+    });
+
+    document.getElementById('printBtn').addEventListener('click', () => {
+      window.print();
+    });
+
+    function buildSaveText(){
+      updatePreview();
+      return `Narrative Essay: Exploring Academic Opportunities
+
+Name: ${valueOrDash(document.getElementById('studentName').value)}
+Date: ${formatDate(document.getElementById('dateField').value)}
+Class: ${valueOrDash(document.getElementById('className').value)}
+
+Opportunity type:
+${valueOrDash(getRadioValue('opportunityType'))}
+
+Program or scholarship information:
+${buildProgramInfo()}
+
+Eligibility requirements:
+${buildEligibility()}
+
+Does the opportunity require writing?
+${valueOrDash(getRadioValue('requiresWriting'))}
+
+Essay prompt or written response questions:
+${buildPromptSection()}
+
+Connection to goals:
+${valueOrDash(document.getElementById('goalConnection').value)}
+
+Source link:
+${valueOrDash(document.getElementById('sourceLink').value)}
+
+Short reflection:
+${valueOrDash(document.getElementById('reflection').value)}`;
+    }
+
+    const saveModal = document.getElementById('saveModal');
+    const modalCard = saveModal.querySelector('.modal-card');
+    const stayOnPageBtn = document.getElementById('stayOnPageBtn');
+    let lastFocusedElement = null;
+
+    function openSaveModal(){
+      lastFocusedElement = document.activeElement;
+      saveModal.classList.remove('hidden');
+      saveModal.setAttribute('aria-hidden', 'false');
+      modalCard.focus();
+    }
+
+    function closeSaveModal(){
+      saveModal.classList.add('hidden');
+      saveModal.setAttribute('aria-hidden', 'true');
+      if(lastFocusedElement && typeof lastFocusedElement.focus === 'function'){
+        lastFocusedElement.focus();
+      }
+    }
+
+    document.getElementById('saveUnfinishedBtn').addEventListener('click', async () => {
+      const text = buildSaveText();
+      saveToLocal();
+      try{
+        await navigator.clipboard.writeText(text);
+      } catch(err){
+        const helper = document.createElement('textarea');
+        helper.value = text;
+        helper.setAttribute('readonly', '');
+        helper.style.position = 'fixed';
+        helper.style.opacity = '0';
+        document.body.appendChild(helper);
+        helper.select();
+        try{ document.execCommand('copy'); } catch(copyErr){}
+        document.body.removeChild(helper);
+      }
+      openSaveModal();
+    });
+
+    document.getElementById('restoreBtn').addEventListener('click', () => {
+      loadFromLocal();
+      refreshAll();
+      statusText.textContent = 'Saved work has been restored on this page.';
+    });
+
+    stayOnPageBtn.addEventListener('click', closeSaveModal);
+
+    saveModal.addEventListener('click', (event) => {
+      if(event.target === saveModal){
+        closeSaveModal();
+      }
+    });
+
+    document.addEventListener('keydown', (event) => {
+      if(event.key === 'Escape' && !saveModal.classList.contains('hidden')){
+        closeSaveModal();
+      }
+    });
+
+    loadFromLocal();
+    refreshAll();
+  </script>
+</body>
+</html>
