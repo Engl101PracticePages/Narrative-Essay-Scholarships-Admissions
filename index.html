@@ -66,6 +66,14 @@
       margin-bottom:18px;
     }
 
+    .top-actions{
+      display:flex;
+      align-items:center;
+      justify-content:flex-end;
+      gap:10px;
+      flex-wrap:wrap;
+    }
+
     .chip{
       display:inline-block;
       background:var(--card);
@@ -621,7 +629,10 @@
   <div class="wrap">
     <div class="topbar">
       <span class="chip">English 101/117 Toolkit Work Hub</span>
-      <a class="small-btn hub-link" href="https://engl101practicepages.github.io/AssignmentWorkHub/">Return to Toolkit Work Hub</a>
+      <div class="top-actions" aria-label="Worksheet actions">
+        <button class="small-btn save-unfinished-btn" type="button">Save Unfinished Work for Later</button>
+        <a class="small-btn hub-link" href="https://engl101practicepages.github.io/AssignmentWorkHub/">Return to Toolkit Work Hub</a>
+      </div>
     </div>
 
     <section class="hero">
@@ -911,7 +922,7 @@
 
         <div class="submit-tools">
           <button class="btn" type="button" id="printBtn">Save Finished Work as PDF</button>
-          <button class="btn secondary" type="button" id="saveUnfinishedBtn">Save Unfinished Work for Later</button>
+          <button class="btn secondary save-unfinished-btn" type="button" id="saveUnfinishedBtn">Save Unfinished Work for Later</button>
           <button class="btn secondary" type="button" id="restoreBtn">Restore Saved Work</button>
         </div>
 
@@ -1282,7 +1293,7 @@ ${valueOrDash(document.getElementById('reflection').value)}`;
       }
     }
 
-    document.getElementById('saveUnfinishedBtn').addEventListener('click', async () => {
+    async function handleSaveUnfinished(){
       const text = buildSaveText();
       saveToLocal();
       try{
@@ -1299,6 +1310,10 @@ ${valueOrDash(document.getElementById('reflection').value)}`;
         document.body.removeChild(helper);
       }
       openSaveModal();
+    }
+
+    document.querySelectorAll('.save-unfinished-btn').forEach(btn => {
+      btn.addEventListener('click', handleSaveUnfinished);
     });
 
     document.getElementById('restoreBtn').addEventListener('click', () => {
