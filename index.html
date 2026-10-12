@@ -647,8 +647,8 @@
 
       <div class="top-warning">
         <strong>Important</strong><br>
-        Keep this toolkit workpage open while you work. Open your scholarship or program research in separate tabs.
-        Google Docs is for unfinished work you need to return to later. Finished work should be saved as a PDF and submitted in Canvas.
+        <label for="promptRequirementAck" style="display:flex; align-items:flex-start; gap:12px; margin-top:12px; cursor:pointer;"><input type="checkbox" id="promptRequirementAck" style="width:22px; height:22px; flex:0 0 auto; margin-top:3px;"><span style="font-weight:400;"><strong>I understand:</strong> I must locate and copy the opportunity's actual essay prompt or written-response questions. If I cannot find a prompt, I must choose a different opportunity. This assignment cannot be completed without the actual prompt.</span></label>
+        
       </div>
     </section>
 
@@ -1237,7 +1237,7 @@ ${formatReq}`;
     });
 
     document.getElementById('printBtn').addEventListener('click', () => {
-      const promptType = getRadioValue('promptType'); const promptField = promptType === 'Several shorter prompt questions' ? document.getElementById('promptQuestions') : document.getElementById('essayPrompt'); if(!promptType || !promptField.value.trim()){ alert('A prompt is required. This assignment cannot be submitted without an application or scholarship prompt. If you cannot locate a prompt for the opportunity you selected, you must select a different opportunity.'); promptField.focus(); promptField.scrollIntoView({behavior: 'smooth', block: 'center'}); return; } window.print();
+      const promptType = getRadioValue('promptType'); const promptField = promptType === 'Several shorter prompt questions' ? document.getElementById('promptQuestions') : document.getElementById('essayPrompt'); if(!document.getElementById('promptRequirementAck').checked || !promptType || !promptField.value.trim()){ alert('A prompt is required. This assignment cannot be submitted without an application or scholarship prompt. If you cannot locate a prompt for the opportunity you selected, you must select a different opportunity.'); promptField.focus(); promptField.scrollIntoView({behavior: 'smooth', block: 'center'}); return; } window.print();
     });
 
     function buildSaveText(){
