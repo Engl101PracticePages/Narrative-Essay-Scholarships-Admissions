@@ -1237,7 +1237,7 @@ ${formatReq}`;
     });
 
     document.getElementById('printBtn').addEventListener('click', () => {
-      window.print();
+      const promptType = getRadioValue('promptType'); const promptField = promptType === 'Several shorter prompt questions' ? document.getElementById('promptQuestions') : document.getElementById('essayPrompt'); if(!promptType || !promptField.value.trim()){ alert('A prompt is required. This assignment cannot be submitted without an application or scholarship prompt. If you cannot locate a prompt for the opportunity you selected, you must select a different opportunity.'); promptField.focus(); promptField.scrollIntoView({behavior: 'smooth', block: 'center'}); return; } window.print();
     });
 
     function buildSaveText(){
